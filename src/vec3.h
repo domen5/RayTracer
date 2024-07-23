@@ -54,7 +54,7 @@ public:
     }
 };
 
-// Defining vec3 as an alias of vec3, it will be usefull for geometric clarity
+// Defining point3 as an alias of vec3, it will be usefull for geometric clarity
 // but it still won't prevent from doing operations between colors and geometric points
 using point3 = vec3;
 
@@ -78,9 +78,14 @@ inline vec3 operator*(const vec3 &v1, const vec3 &v2)
     return vec3(v1.e[0] * v2.e[0], v1.e[1] * v2.e[1], v1.e[2] * v2.e[2]);
 }
 
-inline vec3 operator*(double const c, const vec3 &v)
+inline vec3 operator*(const vec3 &v, double c)
 {
-    return c * v;
+    return vec3(v.e[0] * c, v.e[1] * c, v.e[2] * c);
+}
+
+inline vec3 operator*(double c, const vec3 &v)
+{
+    return v * c;
 }
 
 inline vec3 operator/(const vec3 &v, double const c)
