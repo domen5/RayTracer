@@ -54,4 +54,55 @@ public:
     }
 };
 
+// Defining vec3 as an alias of vec3, it will be usefull for geometric clarity
+// but it still won't prevent from doing operations between colors and geometric points
+using point3 = vec3;
+
+inline std::ostream &operator<<(std::ostream &out, const vec3 &v)
+{
+    return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
+}
+
+inline vec3 operator+(const vec3 &v1, const vec3 &v2)
+{
+    return vec3(v1.e[0] + v2.e[0], v1.e[1] + v2.e[1], v1.e[2] + v2.e[2]);
+}
+
+inline vec3 operator-(const vec3 &v1, const vec3 &v2)
+{
+    return vec3(v1.e[0] - v2.e[0], v1.e[1] - v2.e[1], v1.e[2] - v2.e[2]);
+}
+
+inline vec3 operator*(const vec3 &v1, const vec3 &v2)
+{
+    return vec3(v1.e[0] * v2.e[0], v1.e[1] * v2.e[1], v1.e[2] * v2.e[2]);
+}
+
+inline vec3 operator*(double const c, const vec3 &v)
+{
+    return c * v;
+}
+
+inline vec3 operator/(const vec3 &v, double const c)
+{
+    return (1 / c) * v;
+}
+
+inline double dot(const vec3 &v1, const vec3 &v2)
+{
+    return v1.e[0] * v2.e[0] + v1.e[1] * v2.e[1] + v1.e[2] * v2.e[2];
+}
+
+inline vec3 cross(const vec3 &v1, const vec3 &v2)
+{
+    return vec3(v1.e[1] * v2.e[2] - v1.e[2] * v2.e[1],
+                v1.e[2] * v2.e[0] - v1.e[0] * v2.e[2],
+                v1.e[0] * v2.e[1] - v1.e[1] * v2.e[0]);
+}
+
+inline vec3 unit_vector(const vec3 &v)
+{
+    return v / v.length();
+}
+
 #endif
